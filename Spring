@@ -1,0 +1,5 @@
+@Component
+타입기반의 자동주입 애노테이션
+@Data
+Lombok라이브러리에서 여러 메소드를 자동생성(@Getter,@Setter)
+@Setter (onMethod_ = @Autowired)

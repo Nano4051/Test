@@ -43,9 +43,31 @@ props = 컴포넌트의 속성을 정의할때 사용하는 요소, 값은 해�
     컴포넌트 명.propType={
       변수명 : PropTyepes.자료형 //자료형이 다르면 오류생김 
     }
-=====================================
-state
+  클래스형 컴포넌트에서의 사용
+    컴포넌트명.defaultProps={
+      변수명: 값;
+    }
+    컴포넌트명.propTypes={
+      변수명: PropTypes.자료형
+    }
+  클래스 내부에서 지정시 컴포넌트명 대신 static을 사용
 
+state = 변동이 있는 값들
+  클래스형 컴포넌트에서의state사용
+    생성자를 먼저 작성한다
+    constructor(props){
+      super(props); //반드시 super(props)를 호출해야한다
+      this.state ={
+        변경될 변수명:초기값;
+      }
+    }
+    생성자 없이 state초기값 설정
+      state={
+        변수명:초기값
+      }
+    state사용하기
+    const {변수명} = this.state로 선언
+    this.setState()로 호출
 heap에 저장 함수는 stack에 저장
 클래스 컴포넌트보다 메모리사용이 적다
 클래스형태는 render함수를 무조건 가지고 있어야한다 

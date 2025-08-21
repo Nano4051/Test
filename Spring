@@ -1,5 +1,13 @@
+pom.xml=maven을 찾아서 자동빌드(수정은 updateMaven)
+beans=객체들
+appServlet=dispatcher
+빌드순서 pom-rootContext-serveltContext
+junit테스트로 단위테스트 가능 (new-junittest파일로생성 )
+@RunWith,@ContextConfiguration,@Log4j 애노테이션선언후 테스트가능 
 @Component
 타입기반의 자동주입 애노테이션
 @Data
 Lombok라이브러리에서 여러 메소드를 자동생성(@Getter,@Setter)
 @Setter (onMethod_ = @Autowired)
+new-SpringLegacyProject-SpringMVC-kr.도메인.controller(중복피하기 위해 도메인 거꾸로작성)
+pom에서 10라인(properties)부터 프로젝트까지 복사후 새프로젝트 pom으로 붙여넣고 메이븐업데이트 

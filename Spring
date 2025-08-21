@@ -2,7 +2,7 @@
 pom.xml=maven을 찾아서 자동빌드(수정은 updateMaven)
 appServlet=dispatcher
 빌드순서 pom-rootContext-serveltContext
-
+로딩 순서 web.xml - rootcontext.xml - servletcontext
 junit테스트로 단위테스트 가능 (new-junittest파일로생성 )
 	@RunWith,@ContextConfiguration,@Log4j 애노테이션선언후 테스트가능 
 	@Component=객체라는것 등록 타입기반의 자동주입 애노테이션
@@ -157,3 +157,20 @@ TimeMapperTests.java
 	public void testGetTime2() {
 		log.info(tm.getTime2());
 	}
+pom.xml 추가
+		<dependency>
+		    <groupId>org.bgee.log4jdbc-log4j2</groupId>
+		    <artifactId>log4jdbc-log4j2-jdbc4</artifactId>
+		    <version>1.16</version>
+		</dependency>
+		------변경-------
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+log4jdbc.log4j2.properties 텍스트 파일 추가
+	log4jdbc.spylogdelegator.name=net.sf.log4jdbc.log.slf4j.Slf4jSpyLogDelegator
+rootcontext.xml 변경
+	<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
+	<property name="jdbcUrl" value="jdbc:log4jdbc:mysql://localhost:3306/web"/>

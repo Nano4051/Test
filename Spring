@@ -174,3 +174,6 @@ log4jdbc.log4j2.properties 텍스트 파일 추가
 rootcontext.xml 변경
 	<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
 	<property name="jdbcUrl" value="jdbc:log4jdbc:mysql://localhost:3306/web"/>
+@GetMapping("url경로")
+public 자료형 메소드명(매개변수) 매개변수에 같이쓸수 있는 애노테이션으로 @RequestParam("매개변수명")
+	return은 view가 되는 jsp로 반환

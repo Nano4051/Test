@@ -130,14 +130,30 @@ TimeMapper interface
 	}
 TimeMapperTests.java
 	public class TimeMapperTests {
-	@Setter(onMethod_= @Autowired)	
-	TimeMapper tm;
-	@Test
-	public void testGetTime() {
-		assertNotNull(log);
-		log.info(tm.getTime()); 
+		@Setter(onMethod_= @Autowired)	
+		TimeMapper tm;
+		@Test
+		public void testGetTime() {
+			assertNotNull(log);
+			log.info(tm.getTime()); 
+			}
 	}
-
-}
-
-
+xml을 사용한 Mybatis
+TimeMapper interface
+	public String getTime2();
+src/main/resouces에 mapper가 있는 경로 그대로 패키지 생성
+TimeMapper.xml
+	<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE mapper
+	  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	  <mapper namespace="kr.hkit.mapper.TimeMapper">
+	  	<select id="getTime2" resultType="string">
+	  		SELECT now()
+	  	</select>
+ 	 </mapper>
+TimeMapperTests.java
+@Test
+	public void testGetTime2() {
+		log.info(tm.getTime2());
+	}

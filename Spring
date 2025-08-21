@@ -1,13 +1,20 @@
+스프링은 직접객체생성x 역제어(ioc)객체풀에서 가져온다
 pom.xml=maven을 찾아서 자동빌드(수정은 updateMaven)
 beans=객체들
 appServlet=dispatcher
 빌드순서 pom-rootContext-serveltContext
 junit테스트로 단위테스트 가능 (new-junittest파일로생성 )
 @RunWith,@ContextConfiguration,@Log4j 애노테이션선언후 테스트가능 
-@Component
+@Component=객체라는것 등록
 타입기반의 자동주입 애노테이션
-@Data
-Lombok라이브러리에서 여러 메소드를 자동생성(@Getter,@Setter)
-@Setter (onMethod_ = @Autowired)
+@Data=Lombok라이브러리에서 여러 메소드를 자동생성(@Getter,@Setter)
+@Setter (onMethod_ = @Autowired) = setter가 동작되면서 객체 자동주입
+rootcontext-namespacce-context체크후 <context:component-scan base-package="kr.도메인.vo/"/>추가해야 주입됨
 new-SpringLegacyProject-SpringMVC-kr.도메인.controller(중복피하기 위해 도메인 거꾸로작성)
 pom에서 10라인(properties)부터 프로젝트까지 복사후 새프로젝트 pom으로 붙여넣고 메이븐업데이트 
+private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+  로그메시지 출력을 위한 선언 및 초기화로 프로그램 동작중 여러 상황들을 기록하기 위함
+@RequestMapping(value = "/", method = RequestMethod.GET)
+  value = "/"=url형식으로 들어온 요청을 method = RequestMethod.GET=get메소드방식으로 사용될때만 실행된다 
+kr.도메인.vo assertNotNull(변수)=변수값이 널이 아닐때 실행되게함
+db연동

@@ -5,21 +5,20 @@ appServlet=dispatcher
 빌드순서 pom-rootContext-serveltContext
 junit테스트로 단위테스트 가능 (new-junittest파일로생성 )
 @RunWith,@ContextConfiguration,@Log4j 애노테이션선언후 테스트가능 
-@Component=객체라는것 등록
-타입기반의 자동주입 애노테이션
-@Data=Lombok라이브러리에서 여러 메소드를 자동생성(@Getter,@Setter)
+@Component=객체라는것 등록 타입기반의 자동주입 애노테이션
+@Data=Lombok=라이브러리에서 여러 메소드를 자동생성(@Getter,@Setter)
 @Setter (onMethod_ = @Autowired) = setter가 동작되면서 객체 자동주입
-rootcontext-namespacce-context체크후 <context:component-scan base-package="kr.도메인.vo/"/>추가해야 주입됨
-new-SpringLegacyProject-SpringMVC-kr.도메인.controller(중복피하기 위해 도메인 거꾸로작성)
-pom에서 10라인(properties)부터 프로젝트까지 복사후 새프로젝트 pom으로 붙여넣고 메이븐업데이트 
+	rootcontext-namespacce-context체크후 <context:component-scan base-package="kr.도메인.vo/"/>추가해야 주입됨
+	new-SpringLegacyProject-SpringMVC-kr.도메인.controller(중복피하기 위해 도메인 거꾸로작성)
+	pom에서 10라인(properties)부터 프로젝트까지 복사후 새프로젝트 pom으로 붙여넣고 메이븐업데이트 
 private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
   로그메시지 출력을 위한 선언 및 초기화로 프로그램 동작중 여러 상황들을 기록하기 위함
 @RequestMapping(value = "/", method = RequestMethod.GET)
   value = "/"=url형식으로 들어온 요청을 method = RequestMethod.GET=get메소드방식으로 사용될때만 실행된다 
 assertNotNull(변수)=변수값이 널이 아닐때 실행되게함
-영속계층(db연동) - 서비스- 프리젠테이션
-db연동
-pom.xml
+
+db연동(영속계층)
+pom.xml에 드라이버 등록 확인
   <dependency>
     	 	<groupId>com.mysql</groupId>
    		 	<artifactId>mysql-connector-j</artifactId>
@@ -45,5 +44,41 @@ public class JDBCTests {
 			log.info(e.getMessage());
 			fail(e.getMessage());
 		}
+	}
+}
+HikariCP pom.xml에 추가
+	<dependency>
+	    <groupId>com.zaxxer</groupId>
+	    <artifactId>HikariCP</artifactId>
+	    <version>2.7.4</version>
+	</dependency>
+beans설정(new와 같은 기능)
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig" >
+			<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+			<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/web"/>
+			<property name="username" value="root"/>
+			<property name="password" value="12341234"/>
+	</bean>
+DataSourceTests.java에서 connection 확인
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@Log4j
+public class DataSourceTests {
+	@Setter(onMethod_= @Autowired)
+	DataSource ds;
+	//@Test
+	public void testExist() {
+		assertNotNull(ds);
+		log.info(ds);
+	}
+	@Test
+	public void testConnection() {
+		try {
+			Connection con = ds.getConnection();
+			log.info(con);
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			fail(e.getMessage());
+		}		
 	}
 }

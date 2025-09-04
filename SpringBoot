@@ -6,8 +6,10 @@ pom.xml 		<!-- AspectJ -->부분 아래 다음과 같이 수정
 		    <artifactId>aspectjweaver</artifactId>
 		    <version>${org.aspectj-version}</version>
 		</dependency>
-2.
+2. 샘플서비스 패키지-샘플서비스 인터페이스
 package kr.hkit.Service;
 public interface SampleService {
 	public Integer doAdd(String arg1, String arg2)throws Exception;
 }
+board 프로젝트 수정
+pom.xml

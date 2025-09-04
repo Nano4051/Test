@@ -1,0 +1,8 @@
+SpringBoot 환경설정
+https://mvnrepository.com/artifact/org.aspectj/aspectjweaver/1.9.24에서 클리보드 복사후
+pom.xml 		<!-- AspectJ -->부분 아래 다음과 같이 수정
+    <dependency>
+		    <groupId>org.aspectj</groupId>
+		    <artifactId>aspectjweaver</artifactId>
+		    <version>${org.aspectj-version}</version>
+		</dependency>

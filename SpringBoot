@@ -13,3 +13,6 @@ public interface SampleService {
 }
 board 프로젝트 수정
 pom.xml
+프로젝트 생성후
+1. 디펜던시에 스프링 부트 devtools설치후 그레이들 리프레시함 서버를 재시작 하지 않아도 클래스에 변경이 있을때 자동 재가동
+2.롬복 설치
